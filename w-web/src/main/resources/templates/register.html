@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册界面</title>
+    <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all" />
+    <style>
+        #register{
+            margin-top: 10%;
+            margin-left: 35%;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="register">
+
+    <fieldset class="layui-elem-field" style="width:400px">
+        <div class="layui-field-box">
+            <form class="layui-form"  action="" method="post" style="margin-top: 30px">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="pswd" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-inline">
+                        <input type="email" name="email" required  lay-verify="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名字</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="cname" required  lay-verify="required" placeholder="请输入名字" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="registerForm">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <a href="/login" style="display: block;margin-left: 200px;font-size: small">返回登录</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </fieldset>
+
+
+
+
+</div>
+<script type="text/javascript" src="/plugins/layui/layui.js"></script>
+<script type="text/javascript" src="/js/index/register.js"></script>
+<script type="text/javascript" src="/js/common/constants.js"></script>
+</body>
+</html>

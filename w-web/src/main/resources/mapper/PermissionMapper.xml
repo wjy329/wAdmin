@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjy329.wshiro.dao.PermissionDao">
+  <resultMap id="BaseResultMap" type="com.wjy329.wshiro.entity.Permission">
+    <id column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="href" jdbcType="VARCHAR" property="href" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="orders" jdbcType="INTEGER" property="orders" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    pid, title, href,code,type,parent_id,orders,icon
+  </sql>
+
+  <select id="getAllUrls" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from permission ORDER BY  parent_id ,orders;
+  </select>
+
+  <select id="getAllMenuUrls" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from permission
+    where TYPE  = 0
+    ORDER BY  parent_id ,orders;
+  </select>
+
+  <select id="getByPid" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from permission
+    WHERE
+    pid = #{pid,jdbcType=BIGINT};
+  </select>
+
+
+  <select id="queryPageParent"  parameterType="com.wjy329.wcommon.dto.PageInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from permission where parent_id IS NULL OR parent_id = 0
+    order by pid asc
+    <if test="page.limit != null">
+      <if test="page.offset != null">
+        limit ${page.offset}, ${page.limit}
+      </if>
+      <if test="page.offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+
+  <select id="getAllParentCnt" resultType="java.lang.Integer">
+    select count(pid)  from  permission where parent_id IS NULL OR parent_id = 0
+  </select>
+
+  <select id="getAllChildCnt" resultType="java.lang.Integer">
+    select count(pid)  from  permission where parent_id = #{parentId,jdbcType=BIGINT}
+  </select>
+  <select id="queryPageChilden"  parameterType="com.wjy329.wcommon.dto.PageInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from permission where parent_id = #{parentId,jdbcType=BIGINT}
+    order by pid asc
+    <if test="page.limit != null">
+      <if test="page.offset != null">
+        limit ${page.offset}, ${page.limit}
+      </if>
+      <if test="page.offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+
+  <!-- 根据id获取菜单信息 -->
+  <select id="queryPageById"  parameterType="com.wjy329.wcommon.dto.PageInfo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from permission where pid = #{id,jdbcType=BIGINT}
+    <if test="page.limit != null">
+      <if test="page.offset != null">
+        limit ${page.offset}, ${page.limit}
+      </if>
+      <if test="page.offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="getPageCntById" resultType="java.lang.Integer">
+    select count(pid)  from  permission where pid = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <!-- 更新菜单信息 -->
+  <update id="update" parameterType="com.wjy329.wshiro.entity.Permission">
+    update permission
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null">
+        href = #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryPermByUid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select t3.*
+    from user t1,user_role t2,permission t3,role_permission t4
+    WHERE
+    t1.uid=t2.uid
+    and
+    t2.rid=t4.rid
+    AND
+    t4.pid=t3.pid
+    AND
+    t1.uid = #{uid,jdbcType=INTEGER}
+  </select>
+
+  <select id="getMenuUrlsByUid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select t3.*
+    from user t1,user_role t2,permission t3,role_permission t4
+    WHERE
+    t1.uid=t2.uid
+    and
+    t2.rid=t4.rid
+    AND
+    t4.pid=t3.pid
+    AND
+    t1.uid = #{uid,jdbcType=INTEGER}
+    AND
+    type = 0
+  </select>
+
+  <select id="getPermByRid" parameterType="java.lang.Integer" resultType="com.wjy329.wshiro.entity.Permission">
+    SELECT p.*
+    FROM role r1,role_permission r2,permission p
+    WHERE
+    r1.rid = r2.rid
+    AND
+    r2.pid = p.pid
+    AND
+    r1.rid = #{rid,jdbcType=INTEGER}
+  </select>
+
+  <select id="getAllPerm" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM permission
+  </select>
+
+  <insert id="insert" parameterType="com.wjy329.wshiro.entity.Permission">
+    <selectKey keyProperty="pid" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into permission (title, href, code,
+    type, parent_id, orders, icon
+    )
+    values (#{title,jdbcType=VARCHAR}, #{href,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
+    #{type,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{orders,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}
+    )
+  </insert>
+
+
+  <delete id="deletePerms">
+    DELETE FROM permission WHERE  pid = #{pid,jdbcType=BIGINT} OR parent_id = #{pid,jdbcType=BIGINT}
+  </delete>
+
+  <!-- 删除 角色 菜单表 -->
+  <delete id="deleteRolePerms">
+    DELETE FROM role_permission WHERE pid IN (select pid FROM permission WHERE parent_id = #{pid,jdbcType=BIGINT}  OR pid = #{pid,jdbcType=BIGINT} );
+  </delete>
+
+</mapper>

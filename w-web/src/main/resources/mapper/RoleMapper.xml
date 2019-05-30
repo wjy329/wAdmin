@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wjy329.wshiro.dao.RoleDao">
+    <resultMap id="BaseResultMap" type="com.wjy329.wshiro.entity.Role">
+        <id property="rid" jdbcType="INTEGER" column="rid"/>
+        <result property="rname" jdbcType="VARCHAR" column="rname"/>
+        <result property="note" jdbcType="VARCHAR" column="note"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        rid, rname, note
+    </sql>
+
+    <select id="findRoleByUid" parameterType="Integer" resultMap="BaseResultMap">
+        select r.*
+        from user u,user_role u2,role r
+        WHERE
+        u.uid = u2.uid
+        and
+        u2.rid = r.rid
+        and
+        u.uid = #{uid}
+    </select>
+
+    <select id="getAllRoleCnt" resultType="java.lang.Integer">
+        select count(rid) from role
+    </select>
+
+    <select id="getRoleCntByName" resultType="java.lang.Integer">
+        select count(rid)
+        from role where rname LIKE #{rname,jdbcType=VARCHAR}
+    </select>
+    <select id="getRoleById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from role
+        where rid = #{rid,jdbcType=INTEGER}
+    </select>
+    <delete id="delRoleById" parameterType="java.lang.Long">
+        delete from role
+        where rid = #{rid,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.wjy329.wshiro.entity.Role">
+        <selectKey keyProperty="rid" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into role (rname, note)
+        values (#{rname,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
+    </insert>
+
+
+    <update id="updateRole" parameterType="com.wjy329.wshiro.entity.Role">
+        update role
+        set rname = #{rname,jdbcType=VARCHAR},
+        note = #{note,jdbcType=VARCHAR}
+        where rid = #{rid,jdbcType=INTEGER}
+    </update>
+
+    <select id="queryPage"  parameterType="com.wjy329.wcommon.dto.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from role
+        order by rid desc
+        <if test="page.limit != null">
+            <if test="page.offset != null">
+                limit ${page.offset}, ${page.limit}
+            </if>
+            <if test="page.offset == null">
+                limit ${limit}
+            </if>
+        </if>
+    </select>
+
+    <delete id="delRoleByIds" parameterType="java.util.List" >
+        delete from role
+        where rid in
+        <foreach collection="list" item="rid" index="index"
+                 open="(" close=")" separator=",">
+            #{rid,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+    <delete id="delRoleMenu" parameterType="java.util.List" >
+        delete from role_permission
+        where rid in
+        <foreach collection="list" item="rid" index="index"
+                 open="(" close=")" separator=",">
+            #{rid,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+    <delete id="delUserRole" parameterType="java.util.List" >
+        delete from user_role
+        where rid in
+        <foreach collection="list" item="rid" index="index"
+                 open="(" close=")" separator=",">
+            #{rid,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+    <select id="queryPageByName"  parameterType="com.wjy329.wcommon.dto.PageInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from role where rname LIKE #{rname,jdbcType=VARCHAR}
+        order by rid desc
+        <if test="page.limit != null">
+            <if test="page.offset != null">
+                limit ${page.offset}, ${page.limit}
+            </if>
+            <if test="page.offset == null">
+                limit ${limit}
+            </if>
+        </if>
+    </select>
+
+
+
+    <select id="getRoleByName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from role where rname= #{rname,jdbcType=VARCHAR}
+    </select>
+
+
+    <!-- 获取所有的角色信息 -->
+    <select id="getAllRoles" resultMap="BaseResultMap">
+        select  rid, rname from role
+    </select>
+
+    <!-- 通过用户名称来获取角色信息  TODO-->
+    <select id="getRolesByUid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select  rid from user_role
+        where uid = #{uid,jdbcType=INTEGER}
+    </select>
+
+    <!-- 通过用户id来删除所有的role-->
+    <delete id="delRoleByUserId" parameterType="java.lang.Integer">
+        delete from user_role
+        where uid = #{uid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertUserRole" >
+        <selectKey keyProperty="rid" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO user_role VALUES(#{uid,jdbcType=INTEGER},#{rid,jdbcType=INTEGER});
+    </insert>
+
+
+    <!-- 通过用户名称来获取角色信息  TODO-->
+    <select id="getRolesNameByUid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT t1.rid,t1.note,t1.rname FROM role t1 LEFT JOIN user_role t2 ON t1.`rid` = t2.`rid` WHERE uid = #{uid,jdbcType=INTEGER}
+    </select>
+</mapper>

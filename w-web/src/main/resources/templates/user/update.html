@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>layui后台管理模板</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/css/index/common.css" media="all" />
+	
+</head>
+<body class="childrenBody">
+    <div id="userAdd">
+	    <form class="layui-form"  action="" id="userUpdateFrom" >
+	    	<div class="dialogForm" style="margin-top:20px;padding-right: 80px;">
+	    		<input type="hidden" name="uid"/>
+	    		<div class="layui-form-item">
+					<label class="layui-form-label">用户名</label>
+					<div class="layui-input-block">
+						<input type="text" class="layui-input userName" maxlength="16" name="username" lay-verify="required" placeholder="请输入登录名">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">全名</label>
+					<div class="layui-input-block">
+						<input type="text" class="layui-input " name="cname" maxlength="16" lay-verify="required" placeholder="请输全名">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">邮箱</label>
+					<div class="layui-input-block">
+						<input type="text" class="layui-input userEmail" maxlength="32"  name="email"  lay-verify="email" placeholder="请输入邮箱">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit="" lay-filter="updateUserFrom" >更新</button>
+				    </div>
+				</div>
+	    	</div>
+	    </form>
+    </div>
+	<script type="text/javascript" src="/plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/user/update.js"></script>
+	<script type="text/javascript" src="/js/common/constants.js"></script>
+</body>
+</html>

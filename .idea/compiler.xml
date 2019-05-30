@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="w-common" />
+        <module name="w-shiro" />
+        <module name="w-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="w-blog" target="1.7" />
+      <module name="w-common" target="8" />
+      <module name="w-shiro" target="1.7" />
+      <module name="w-web" target="1.7" />
+      <module name="wAdmin" target="1.7" />
+      <module name="wmanage" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

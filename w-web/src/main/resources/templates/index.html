@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>wAdmin后台管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/css/main.css" media="all" />
+</head>
+<body class="main_body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 顶部 -->
+    <div class="layui-header" >
+        <div class="layui-logo">
+            <img th:src="@{/images/logo.png}" style="float:left;margin: 5px 0 5px 5px;"/>
+        </div>
+        <!-- 设定顶部的消息信息 -->
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item">
+                <img id="left_nav" th:src="@{/images/nav_menu.png}" style="width: 35px;height: 35px;cursor:pointer;"/>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="https://www.wjy329.com">博客</a></dd>
+                    <dd><a href="https://weibo.com/wjy0329">微博</a></dd>
+
+                </dl>
+            </li>
+        </ul>
+        <!-- 用户推出模块 -->
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="/images/logo-head.png" class="layui-nav-img">
+                    <span th:text="${session.user.username}" th:if="${session.user != null}" >用户名</span>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="/logout">注销</a></li>
+        </ul>
+
+    </div>
+    <!-- 左侧导航 -->
+    <div class="layui-side layui-bg-black">
+        <!-- <div class="user-photo">
+            <a class="img" title="我的头像" ><img src="images/face.jpg"></a>
+            <p>你好！<span class="userName">请叫我马哥</span>, 欢迎登录</p>
+        </div> -->
+        <div class="navBar layui-side-scroll"></div>
+    </div>
+    <!-- 右侧内容 -->
+    <div class="layui-body layui-form">
+        <div class="layui-tab marg0" lay-filter="bodyTab">
+            <ul class="layui-tab-title top_tab">
+                <li class="layui-this" lay-id=""><i class="iconfont icon-computer"></i> <cite>后台首页</cite></li>
+            </ul>
+            <div class="layui-tab-content clildFrame">
+                <div class="layui-tab-item layui-show">
+                    <iframe src="page/main.html"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="layui-footer footer">
+        <p>copyright @2018 https://www.wjy329.com/</p>
+    </div>
+</div>
+
+<!-- 移动导航 -->
+<div class="site-tree-mobile layui-hide"><i class="layui-icon">&#xe602;</i></div>
+<div class="site-mobile-shade"></div>
+
+<script type="text/javascript" src="/js/common/constants.js"></script>
+<script type="text/javascript" src="/plugins/layui/layui.all.js"></script>
+<script type="text/javascript" src="/js/nav.js"></script>
+<script type="text/javascript" src="/js/index/index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>layui后台管理模板</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/plugins/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/css/index/common.css" media="all" />
+	<!-- jquery -->
+	<script type="text/javascript" src="/plugins/jquery/jquery.min.js"></script>
+	<!-- zTree -->
+	<link rel="stylesheet" type="text/css" href="/plugins/zTree/css/zTreeStyle/zTreeStyle.css">
+	<script type="text/javascript" src="/plugins/zTree/js/jquery.ztree.all.min.js"></script>
+	
+</head>
+<body class="childrenBody">
+    <div id="userAdd">
+	    <form class="layui-form"  action="" id="userAddFrom" >
+	    	<div class="dialogForm" style="margin-top:20px;padding-right: 80px;">
+	    		<input type="hidden" name="rid"/>
+				<label class="layui-form-label">选择权限</label>
+				  <div class="layui-form-item">
+				    <div class="ztree"  id="tree"></div>
+				  </div>
+				  
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit="" lay-filter="addRoleFrom" >立即提交</button>
+						<button class="layui-btn layui-btn-primary" id="restRoleFrom">重置</button>
+				    </div>
+				</div>
+	    	</div>
+	    </form>
+    </div>
+	<script type="text/javascript" src="/plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/role/addPerm.js"></script>
+	<script type="text/javascript" src="/js/common/constants.js"></script>
+	
+
+	
+</body>
+</html>
