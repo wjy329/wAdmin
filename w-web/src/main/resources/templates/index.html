@@ -25,7 +25,8 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item">
-                <img id="left_nav" th:src="@{/images/nav_menu.png}" style="width: 35px;height: 35px;cursor:pointer;"/>
+                <!--<img id="left_nav" th:src="@{/images/nav_menu.png}" style="width: 35px;height: 35px;cursor:pointer;"/>-->
+                <i id="left_nav" class="layui-icon layui-icon-shrink-right" style="cursor:pointer;"></i>
             </li>
             <li class="layui-nav-item">
                 <a href="javascript:;">其它</a>
@@ -40,12 +41,12 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="/images/logo-head.png" class="layui-nav-img">
+                    <!--<img src="/images/logo-head.png" class="layui-nav-img">-->
                     <span th:text="${session.user.username}" th:if="${session.user != null}" >用户名</span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="javascript:;" data-url="/user/myCenter"><i class="layui-icon" data-icon="&#xe60a;">&#xe60a;</i><cite>个人资料</cite></a></dd>
+                    <!--<dd><a href="">安全设置</a></dd>-->
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="/logout">注销</a></li>

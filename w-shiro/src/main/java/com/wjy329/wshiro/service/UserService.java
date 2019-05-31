@@ -3,6 +3,7 @@ package com.wjy329.wshiro.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.wjy329.wshiro.entity.User;
+import com.wjy329.wshiro.model.UserInfo;
 
 import java.util.List;
 
@@ -71,4 +72,5 @@ public interface UserService {
      * @param user
      */
      void updateUser(User user);
+
 }

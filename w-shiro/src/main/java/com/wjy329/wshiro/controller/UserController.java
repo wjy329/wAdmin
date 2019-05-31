@@ -1,14 +1,18 @@
 package com.wjy329.wshiro.controller;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.wjy329.wcommon.constant.Constants;
 import com.wjy329.wcommon.constant.ResultCode;
 import com.wjy329.wcommon.utils.WebUtils;
+import com.wjy329.wshiro.entity.Role;
 import com.wjy329.wshiro.entity.User;
 import com.wjy329.wshiro.model.Label;
+import com.wjy329.wshiro.model.UserInfo;
 import com.wjy329.wshiro.service.RoleService;
 import com.wjy329.wshiro.service.UserService;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -142,4 +146,37 @@ public class UserController {
             return WebUtils.getInstance().writeMsg(ResultCode.ERROR, e.getMessage());
         }
     }
+
+    /**
+     * 返回个人中心页面
+     * @author wjy329
+     * @return
+     */
+    @RequestMapping("/myCenter")
+    public String myCenter(){
+        return "user/myCenter";
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/myCenter",produces="application/json;charset=UTF-8")
+    public String myData(){
+        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+        StringBuilder rnameStr = new StringBuilder();
+        // 获取角色名称
+        List<String> roleNames = roleService.getRnameByUid(user.getUid());
+
+        for(String roleName : roleNames){
+            rnameStr.append(roleName);
+            rnameStr.append(",");
+        }
+        //去掉最后的一个 ,
+        String rolesStr = rnameStr.substring(0, rnameStr.length()-1);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setCname(user.getCname());
+        userInfo.setEmail(user.getEmail());
+        userInfo.setRoleName(rolesStr);
+        JSONObject res = (JSONObject) JSONObject.toJSON(userInfo);
+        return res.toJSONString();
+    }
+
 }

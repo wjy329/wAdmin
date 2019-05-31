@@ -10,6 +10,7 @@ import com.wjy329.wcommon.dto.SystemPageContext;
 import com.wjy329.wcommon.utils.PasswordUtil;
 import com.wjy329.wshiro.dao.UserDao;
 import com.wjy329.wshiro.entity.User;
+import com.wjy329.wshiro.model.UserInfo;
 import com.wjy329.wshiro.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,4 +145,5 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(user, entity);
         this.userDao.updateUser(entity);
     }
+
 }

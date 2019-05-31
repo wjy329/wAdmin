@@ -122,12 +122,15 @@ layui.config({
                 $(".layui-side").animate({width:'0px'});
                 $(".layui-body").animate({left:'0px'});
                 $(".layui-footer").animate({left:'0px'});
+				$('#left_nav').removeClass("layui-icon-shrink-right");
+				$('#left_nav').addClass("layui-icon-spread-left");
                 j++;
             }else{
                 $(".layui-side").animate({width:'200px'});
                 $(".layui-body").animate({left:'200px'});
                 $(".layui-footer").animate({left:'200px'});
-
+				$('#left_nav').removeClass("layui-icon-spread-left");
+				$('#left_nav').addClass("layui-icon-shrink-right");
                 j--;
             }
         });

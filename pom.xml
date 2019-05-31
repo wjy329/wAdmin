@@ -154,7 +154,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>provided</scope>
-			<!--optional我没弄明白，都说必须为true，但我测试true，false，不加都可以 -->
 			<optional>true</optional>
 		</dependency>
 
