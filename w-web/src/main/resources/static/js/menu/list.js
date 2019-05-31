@@ -86,7 +86,6 @@ layui.config({
     //监听工具条
     table.on('tool(menu_form)', function(obj){
         var data = obj.data;
-        console.log(data);
         if(obj.event === 'edit'){
 
             //开启添加界面
@@ -138,7 +137,6 @@ layui.config({
 
     function zTreeOnClick(treeId, nodes, treeNode) {
         //alert(treeNode.tId + ", " + treeNode.name+"treeId"+treeNode.pId);
-        console.log("父节点id"+treeNode.pId+"节点"+JSON.stringify(treeNode));
         menuTable.reload({
             url: '/menu/getTableData'
             ,where: {id:treeNode.id}
@@ -263,7 +261,6 @@ layui.config({
     $('#addMenu').click(function (){
         var treeObj = $.fn.zTree.getZTreeObj("tree");
         var nodes = treeObj.getSelectedNodes();
-        console.log(nodes[0]);
         if(nodes.length === 0){
             layer.msg("请选中新菜单的父节点！！！", {time: 2000, icon:2});
             return false;
@@ -300,6 +297,11 @@ layui.config({
         if(nodes.length === 0){
             layer.msg("请选中删除的节点！！！", {time: 2000, icon:2});
             return false;
+        }
+
+        if(nodes[0].id == 0 || nodes[0].id == 1){
+            layer.msg("不能删除此节点", {time: 2000, icon:2});
+            return;
         }
 
         var title = "真的删除【"+nodes[0].name+"】菜单吗？";
