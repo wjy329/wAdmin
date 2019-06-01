@@ -9,6 +9,7 @@ import com.wjy329.wcommon.constant.ResultCode;
 import com.wjy329.wcommon.utils.WebUtils;
 import com.wjy329.wshiro.entity.Permission;
 import com.wjy329.wshiro.entity.RolePerm;
+import com.wjy329.wshiro.model.LTree;
 import com.wjy329.wshiro.model.Menus;
 import com.wjy329.wshiro.model.Tree;
 import com.wjy329.wshiro.service.PermissionService;
@@ -119,6 +120,13 @@ public class MenuController {
     public String getSelMenuIdByRoleId(@PathVariable Integer rid){
         List<RolePerm> rolePerms = permissionService.getSelectedByRid(rid);
         return WebUtils.getInstance().writeData(ResultCode.OK,rolePerms);
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/layTreeData",produces="application/json;charset=UTF-8")
+    public String layTreeData(){
+        List<LTree> trees = permissionService.getLayTree();
+        return WebUtils.getInstance().writeData(ResultCode.OK,trees);
     }
 
 }

@@ -52,5 +52,10 @@ public class Constants {
 
 	//管理员默认id
 	public static final Integer ADMIN_ID = 1;
+
+	//跟菜单的标识
+	public static final Integer ROOT_MENU_FLAG = 0;
+
+
 	
 }

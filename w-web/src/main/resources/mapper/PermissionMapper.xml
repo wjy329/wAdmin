@@ -191,4 +191,13 @@
     DELETE FROM role_permission WHERE pid IN (select pid FROM permission WHERE parent_id = #{pid,jdbcType=BIGINT}  OR pid = #{pid,jdbcType=BIGINT} );
   </delete>
 
+
+  <select id="getByParentId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from permission
+    WHERE
+    parent_id = #{parentId,jdbcType=BIGINT};
+  </select>
+
 </mapper>

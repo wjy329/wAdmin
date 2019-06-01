@@ -102,4 +102,11 @@ public interface PermissionDao {
 
     Integer getPageCntById(@Param(value = "id") Long id);
 
+    /**
+     * 根据父类id获取子类
+     * @param parentId
+     * @return
+     */
+    List<Permission> getByParentId(@Param(value = "parentId") Long parentId);
+
 }

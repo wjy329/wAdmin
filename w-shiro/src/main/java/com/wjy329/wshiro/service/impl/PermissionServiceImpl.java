@@ -4,6 +4,7 @@ package com.wjy329.wshiro.service.impl;/**
  * @description
  */
 
+import com.alibaba.druid.sql.visitor.functions.Ltrim;
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -14,6 +15,7 @@ import com.wjy329.wshiro.dao.RolePermDao;
 import com.wjy329.wshiro.entity.Permission;
 import com.wjy329.wshiro.entity.RolePerm;
 import com.wjy329.wshiro.entity.User;
+import com.wjy329.wshiro.model.LTree;
 import com.wjy329.wshiro.model.Menus;
 import com.wjy329.wshiro.model.Tree;
 import com.wjy329.wshiro.service.PermissionService;
@@ -215,6 +217,66 @@ public class PermissionServiceImpl implements PermissionService{
             return grid;
         }
         return (JSONArray) JSONArray.parse(JSON.toJSON(result).toString());
+    }
+
+    @Override
+    public List<LTree> getLayTree() {
+        List<LTree> treeList = new ArrayList<>();
+        List<Permission> entitys = this.permissionDao.getAllUrls();
+        Set<Long> parentIds = new HashSet<>();
+        for(Permission permission : entitys){
+            if(permission.getParentId() != null){
+                parentIds.add(permission.getParentId());
+            }else{
+                // 所有的一级菜单
+                LTree lTree = this.getLTree(permission);
+                treeList.add(lTree);
+            }
+        }
+        // 为一级菜单设置子菜单
+        for(LTree lTree : treeList){
+            lTree.setChildren(getChilds(lTree.getId(),entitys,parentIds));
+        }
+        return treeList;
+    }
+
+    private List<LTree> getChilds(Long pid, List<Permission> entitys,Set<Long> parentIds) {
+        //子菜单
+        List<LTree> childs = new ArrayList<>();
+        for(Permission permission : entitys){
+            // 判断是否是该节点的子菜单
+            if(permission.getParentId() != null){
+                if(permission.getParentId() == pid){
+                    LTree lTree = this.getLTree(permission);
+                    childs.add(lTree);
+                }
+            }
+        }
+	    // 把子菜单的子菜单再循环一遍
+        for(LTree lTree : childs){
+            if(parentIds.contains(lTree.getId())){
+                lTree.setChildren(getChilds(lTree.getId(),entitys,parentIds));
+            }
+        }
+
+	    // 递归退出条件
+        if (childs.size() == 0) {
+	        return null;
+        }
+	    return childs;
+    }
+
+
+
+
+    private LTree getLTree(Permission entity) {
+        LTree lTree = new LTree();
+        lTree.setId(entity.getPid());
+        lTree.setDisabled(false);
+        lTree.setFixed(true);
+        lTree.setLabel(entity.getTitle());
+        lTree.setHref(entity.getHref());
+        return  lTree;
     }
 
     /** 

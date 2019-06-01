@@ -1,10 +1,11 @@
 layui.config({
     base: '/js/modules/'
-}).use(['form','layer','table','jquery','laypage'],function(){
+}).use(['form','layer','table','jquery','laypage','tree'],function(){
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : parent.layer,
         laypage = layui.laypage,
         table = layui.table,
+        tree = layui.tree,
         $ = layui.jquery;
 
     //创建树
@@ -368,6 +369,37 @@ layui.config({
         });
     }
 
+    var treeData = [];
+    $.ajax({
+        type:'post',
+        url: "/menu/layTreeData",
+        dataType: "json",
+        async: false,
+        success: function (result) {
+            if(result.code == "1"){
+                treeData = result.data;
+            }else{
+                //layer.msg(result.info, {time: 1000, icon:2});
+                console.log("error");
+            }
+
+        },
+        error: function (msg) {
+        }
+    });
+
+  /*  //渲染
+    var inst1 = tree.render({
+        elem: '#layui-tree',  //绑定元素
+        data: treeData,
+        expandClick : true,
+        click: function(obj){
+            menuTable.reload({
+                url: '/menu/getTableData'
+                ,where: {id:obj.data.id}
+            });
+        }
+    });*/
 
 });
 
