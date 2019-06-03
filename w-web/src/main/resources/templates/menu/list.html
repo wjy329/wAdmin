@@ -17,27 +17,39 @@
     <script type="text/javascript" src="/plugins/zTree/js/jquery.ztree.all.min.js"></script>
 </head>
 <body class="childrenBody">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <blockquote class="layui-elem-quote news_search">
+                            <div class="layui-inline">
+                                <a class="layui-btn layui-btn-normal newsAdd_btn" id="addMenu">添加菜单</a>
+                            </div>
+                            <div class="layui-inline">
+                                <a class="layui-btn layui-btn-danger batchDel" id="delMenu">删除菜单</a>
+                            </div>
+                        </blockquote>
 
-<blockquote class="layui-elem-quote news_search">
-    <div class="layui-inline">
-        <a class="layui-btn layui-btn-normal newsAdd_btn" id="addMenu">添加菜单</a>
+
+                        <div class="layui-row layui-col-space10">
+                            <div class="layui-col-md2">
+                                <ul id="tree" class="ztree"></ul>
+                                <!-- 开启layui tree -->
+                                <!--        <div id="layui-tree"></div>-->
+                            </div>
+                            <div class="layui-col-md10">
+                                <table class="layui-hide" id="job_menu"  lay-filter="menu_form" ></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <div class="layui-inline">
-        <a class="layui-btn layui-btn-danger batchDel" id="delMenu">删除菜单</a>
-    </div>
-</blockquote>
 
 
-<div class="layui-row layui-col-space10">
-    <div class="layui-col-md2">
-        <ul id="tree" class="ztree"></ul>
-        <!-- 开启layui tree -->
-<!--        <div id="layui-tree"></div>-->
-    </div>
-    <div class="layui-col-md10">
-        <table class="layui-hide" id="job_menu"  lay-filter="menu_form" ></table>
-    </div>
-</div>
 
 
 

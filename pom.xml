@@ -14,7 +14,8 @@
 		<module>./w-web</module>
 		<module>./w-shiro</module>
 		<module>./w-common</module>
-	</modules>
+        <module>w-gen</module>
+    </modules>
 	<!-- 引用父类依赖-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -178,6 +179,16 @@
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 			<version>3.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
 		</dependency>
 		<!-- 打包时，放开；测试时，注释 -->
 		<!--<dependency>-->

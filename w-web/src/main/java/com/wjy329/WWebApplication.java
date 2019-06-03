@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @ServletComponentScan
-@MapperScan({"com.wjy329.wshiro.dao"})
+@MapperScan({"com.wjy329.wshiro.dao","com.wjy329.wgen.dao"})
 public class WWebApplication extends SpringBootServletInitializer {
 
 	@Override

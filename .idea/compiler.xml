@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="w-common" />
+        <module name="w-gen" />
         <module name="w-shiro" />
         <module name="w-web" />
       </profile>
@@ -14,6 +15,7 @@
     <bytecodeTargetLevel>
       <module name="w-blog" target="1.7" />
       <module name="w-common" target="8" />
+      <module name="w-gen" target="1.7" />
       <module name="w-shiro" target="1.7" />
       <module name="w-web" target="1.7" />
       <module name="wAdmin" target="1.7" />
@@ -23,6 +25,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="w-common" options="-parameters" />
+      <module name="w-gen" options="-parameters" />
       <module name="w-shiro" options="-parameters" />
       <module name="w-web" options="-parameters" />
     </option>

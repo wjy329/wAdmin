@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/w-common/w-common.iml" filepath="$PROJECT_DIR$/w-common/w-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/w-gen/w-gen.iml" filepath="$PROJECT_DIR$/w-gen/w-gen.iml" />
       <module fileurl="file://$PROJECT_DIR$/w-shiro/w-shiro.iml" filepath="$PROJECT_DIR$/w-shiro/w-shiro.iml" />
       <module fileurl="file://$PROJECT_DIR$/w-web/w-web.iml" filepath="$PROJECT_DIR$/w-web/w-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/wAdmin.iml" filepath="$PROJECT_DIR$/wAdmin.iml" />

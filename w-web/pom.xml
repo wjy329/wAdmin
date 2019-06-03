@@ -33,6 +33,13 @@
 			<version>${version}</version>
 		</dependency>
 
+		<!-- 导入w-gen -->
+		<dependency>
+			<groupId>${groupId}</groupId>
+			<artifactId>w-gen</artifactId>
+			<version>${version}</version>
+		</dependency>
+
 
 	</dependencies>
 

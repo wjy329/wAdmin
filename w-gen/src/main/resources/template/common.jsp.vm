@@ -1,0 +1,16 @@
+<!--
+* 公用页面
+* @author ${author}
+* @email ${email}
+* @date ${datetime}
+*-->
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+         #foreach ($column in $columns)
+        <div class="layui-form-item">
+            <label class="layui-form-label">${column.comments}<span class="span_must">*</span></label>
+            <div class="layui-input-normal">
+                <input type="text"  name="${column.attrname}" maxlength="${column.maxLength}"  value="#[[$]]#{model.${column.attrname}}" lay-verify="required" placeholder="请输入${column.comments}"  class="layui-input">
+            </div>
+        </div>
+      #end

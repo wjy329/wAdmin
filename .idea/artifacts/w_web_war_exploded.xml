@@ -20,6 +20,9 @@
           <element id="archive" name="w-common-0.0.1-SNAPSHOT.jar">
             <element id="module-output" name="w-common" />
           </element>
+          <element id="archive" name="w-gen-0.0.1-SNAPSHOT.jar">
+            <element id="module-output" name="w-gen" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-web:2.1.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter:2.1.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.1.5.RELEASE" />
@@ -109,6 +112,9 @@
           <element id="library" level="project" name="Maven: com.squareup.okio:okio:1.14.0" />
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.5" />
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.2" />
+          <element id="library" level="project" name="Maven: commons-configuration:commons-configuration:1.8" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
+          <element id="library" level="project" name="Maven: org.apache.velocity:velocity:1.7" />
         </element>
       </element>
       <element id="directory" name="META-INF">
