@@ -20,4 +20,11 @@
       <module name="wmanage" target="1.7" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="w-common" options="-parameters" />
+      <module name="w-shiro" options="-parameters" />
+      <module name="w-web" options="-parameters" />
+    </option>
+  </component>
 </project>

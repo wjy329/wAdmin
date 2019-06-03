@@ -119,7 +119,7 @@ public class PermissionServiceImpl implements PermissionService{
             total =  this.permissionDao.getAllChildCnt(pid);
             result = this.permissionDao.queryPageChilden(SystemPageContext.getPageInfo(), pid);
         }
-        // 设定总的数据两
+        // 设置总数目
         SystemPageContext.setTotal(total);
 
         JSONArray grid = new JSONArray();

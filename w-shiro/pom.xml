@@ -14,7 +14,7 @@
 
 	<parent>
 		<groupId>com.wjy329</groupId>
-		<artifactId>wblog</artifactId>
+		<artifactId>wAdmin</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
@@ -31,6 +31,7 @@
 			<artifactId>shiro-all</artifactId>
 			<version>1.2.5</version>
 		</dependency>
-	</dependencies>
+
+    </dependencies>
 
 </project>

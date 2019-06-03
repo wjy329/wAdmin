@@ -9,7 +9,7 @@
 	<url>http://maven.apache.org</url>
 	<parent>
 		<groupId>com.wjy329</groupId>
-		<artifactId>wblog</artifactId>
+		<artifactId>wAdmin</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>

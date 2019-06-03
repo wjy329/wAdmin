@@ -7,6 +7,7 @@ import com.wjy329.wshiro.entity.User;
 import com.wjy329.wshiro.service.PermissionService;
 import com.wjy329.wshiro.service.RoleService;
 import com.wjy329.wshiro.service.UserService;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
