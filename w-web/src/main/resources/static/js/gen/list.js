@@ -38,7 +38,6 @@ layui.config({
 
     //监听头部工具条事件
     table.on('toolbar(table_table)', function(obj){
-        console.log(obj)
         var checkStatus = table.checkStatus(obj.config.id),data = checkStatus.data;
 
         switch(obj.event){
@@ -63,20 +62,8 @@ layui.config({
         //发送ajax删除数据
         var tableName = tableNames.join(",");
 
-        $.ajax({
-            type : "post",  //使用提交的方法 post、get
-            url : "/generator/code/"+tableName,   //提交的地址
-            async : false,   //配置是否异步操作
-            dataType:"json"//返回数据类型的格式
-        }).done(function (result) {//回调操作
-            if(resultData.requestOk(result)){
-                flag = true;
-                layer.msg(result.info, {time: 1000, icon:1});
-            }else{
-                layer.msg(result.info, {time: 1000, icon:2});
-            }
+        location.href = "/generator/code/"+tableName;
 
-        });
 
     }
 

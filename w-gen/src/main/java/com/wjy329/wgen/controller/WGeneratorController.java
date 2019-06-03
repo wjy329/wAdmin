@@ -44,7 +44,7 @@ public class WGeneratorController {
         return WebUtils.getInstance().getLayuiPageStr(rs);
     }
 
-    @RequestMapping(value="/code/{tableName}",method= RequestMethod.POST)
+    @RequestMapping(value="/code/{tableName}",method= RequestMethod.GET)
     public void code(@PathVariable String tableName, HttpServletResponse response) throws IOException {
         String [] tableNames = tableName.split(",");
         byte[] data = wGeneratorService.generatorCode(tableNames);

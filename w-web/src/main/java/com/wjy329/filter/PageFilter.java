@@ -32,6 +32,8 @@ public class PageFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+
+
 		String page = request.getParameter("page");
 		String rows = request.getParameter("rows");
 		//排序的字段
